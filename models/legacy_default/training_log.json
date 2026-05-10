@@ -1,0 +1,30 @@
+{
+  "model_name": "legacy_default",
+  "timestamp": "20260327_000000",
+  "dataset_file": "shuffled_dataset.csv",
+  "smiles_column": "smiles",
+  "pic50_column": "pIC50",
+  "dataset_size": 29015,
+  "features_count": 25,
+  "validation_metrics": {
+    "rmse": 0.7397,
+    "r2": 0.8549
+  },
+  "test_metrics": {
+    "rmse": 0.7597,
+    "r2": 0.8388
+  },
+  "best_params": {
+    "depth": 6,
+    "iterations": 200,
+    "l2_leaf_reg": 3,
+    "learning_rate": 0.03
+  },
+  "steps": [
+    {"name": "load_dataset", "status": "success"},
+    {"name": "preprocessing", "status": "success"},
+    {"name": "hyperparameter_tuning", "status": "success"},
+    {"name": "test_evaluation", "status": "success"},
+    {"name": "final_model_training", "status": "success"}
+  ]
+}

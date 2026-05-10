@@ -1,0 +1,9 @@
+{
+  "best_score": -0.7609953206865875,
+  "best_params": {
+    "depth": 8,
+    "iterations": 300,
+    "l2_leaf_reg": 1,
+    "learning_rate": 0.03
+  }
+}
