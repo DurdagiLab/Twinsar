@@ -388,6 +388,14 @@ def load_dataset(file_path, dataset_name, compute_ratios=False):
             from rdkit.Chem import PandasTools
 
             df = PandasTools.LoadSDF(file_path, smilesName="SMILES")
+        elif ext == ".smi":
+            df = pd.read_csv(file_path, sep="\s+", header=None)
+            if df.shape[1] == 2:
+                df.columns = ["SMILES", "pIC50"]
+            elif df.shape[1] == 1:
+                df.columns = ["SMILES"]
+            else:
+                df.columns = [f"col{i}" for i in range(df.shape[1])]
         else:
             return None, f"Unsupported file format: {ext}"
     except Exception as e:
@@ -679,12 +687,12 @@ def run_twin_pipeline(
             print(f"  Model loaded: {model_path}")
 
     print("\n[1/7] Loading datasets...")
-    df_query, err = load_dataset(query_path, "query", compute_ratios=False)
+    df_query, err = load_dataset(query_path, "query", compute_ratios=True)
     if err:
         print(f"ERROR: {err}")
         return None
 
-    df_target, err = load_dataset(target_path, "target", compute_ratios=False)
+    df_target, err = load_dataset(target_path, "target", compute_ratios=True)
     if err:
         print(f"ERROR: {err}")
         return None
